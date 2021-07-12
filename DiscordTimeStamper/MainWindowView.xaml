@@ -16,69 +16,94 @@
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Grid Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="200" />
-        </Grid.ColumnDefinitions>
+
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="15" />
+            <RowDefinition Height="3" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label
-            Grid.Row="0"
-            Grid.Column="0"
-            Content="Date/Time:" />
-        <Label
-            Grid.Row="4"
-            Grid.Column="0"
-            Content="Time Code:" />
+        <Menu Grid.ColumnSpan="3" Height="Auto">
+            <MenuItem Header="_About">
+                <MenuItem Command="{Binding CommandGithub}" Header="_GitHub" />
+            </MenuItem>
+        </Menu>
 
-        <mah:DateTimePicker
-            Grid.Row="0"
-            Grid.Column="2"
-            SelectedDateTime="{Binding DateTime, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid Margin="5,0,5,5" Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <ComboBox
-            Grid.Row="4"
-            Grid.Column="2"
-            ItemsSource="{Binding TimeZones, Mode=OneWay}"
-            SelectedItem="{Binding SelectedTimeZone, UpdateSourceTrigger=PropertyChanged}" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Content="Datetime:" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Content="Timezone:" />
 
-        <DataGrid
-            Grid.Row="6"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            HorizontalContentAlignment="Stretch"
-            AutoGenerateColumns="False"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeColumns="False"
-            CanUserSortColumns="False"
-            IsReadOnly="True"
-            ItemsSource="{Binding GeneratedFormats, Mode=OneWay}"
-            SelectedItem="{Binding SelectedDataGridItem, Mode=OneWayToSource}">
-            <b:Interaction.Triggers>
-                <b:EventTrigger EventName="MouseDoubleClick">
-                    <b:InvokeCommandAction Command="{Binding DataGridDoubleClickCommand}" />
-                </b:EventTrigger>
-            </b:Interaction.Triggers>
+            <mah:DateTimePicker
+                Grid.Row="0"
+                Grid.Column="2"
+                SelectedDateTime="{Binding DateTime, UpdateSourceTrigger=PropertyChanged}" />
 
-            <DataGrid.Columns>
-                <DataGridTextColumn
-                    MinWidth="200"
-                    Binding="{Binding Value}"
-                    Header="Value" />
-                <DataGridTextColumn Binding="{Binding DiscordFormat}" Header="Discord Format" />
-            </DataGrid.Columns>
-        </DataGrid>
+            <ComboBox
+                Grid.Row="2"
+                Grid.Column="2"
+                ItemsSource="{Binding TimeZones, Mode=OneWay}"
+                SelectedItem="{Binding SelectedTimeZone, UpdateSourceTrigger=PropertyChanged}" />
+
+            <DataGrid
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalContentAlignment="Stretch"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserSortColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding GeneratedFormats, Mode=OneWay}"
+                SelectedItem="{Binding SelectedDataGridItem, Mode=OneWayToSource}">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        MinWidth="200"
+                        Binding="{Binding Value}"
+                        Header="Value" />
+
+                    <DataGridTextColumn Binding="{Binding DiscordFormat}" Header="Discord Format">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type FrameworkElement}">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button
+                Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Command="{Binding CommandCopySelected}"
+                Content="Copy selected" />
+        </Grid>
     </Grid>
 </Window>
