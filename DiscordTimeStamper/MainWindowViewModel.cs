@@ -7,7 +7,7 @@
 // File Name: MainWindowViewModel.cs
 // 
 // Current Data:
-// 2021-07-13 1:35 AM
+// 2021-07-13 2:11 AM
 // 
 // Creation Date:
 // 2021-07-12 10:02 PM
@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
+using System.Diagnostics;
 using System.Windows;
 using Microsoft.Xaml.Behaviors.Core;
 
@@ -28,24 +28,13 @@ using Microsoft.Xaml.Behaviors.Core;
 
 namespace DiscordTimeStamper
 {
-  internal struct FormatPair
-  {
-    public string DiscordFormat { get; init; }
-    public string Value { get; init; }
-
-    public FormatPair(string discordFormat, DateTimeOffset datetime, string dateTimeFormat)
-    {
-      DiscordFormat = discordFormat;
-      Value = datetime.ToString(dateTimeFormat, CultureInfo.GetCultureInfo("en-US"));
-    }
-  }
-
   internal class MainWindowViewModel : PropertyChangedBase
   {
     private DateTime _dateTime = DateTime.Now;
     private ObservableCollection<FormatPair> _generatedFormats = new();
     private TimeZoneInfo _selectedTimeZone = TimeZoneInfo.Local;
-    public ActionCommand DataGridDoubleClickCommand { get; }
+    public ActionCommand CommandCopySelected { get; }
+    public ActionCommand CommandGithub { get; }
 
     public DateTime DateTime
     {
@@ -73,9 +62,15 @@ namespace DiscordTimeStamper
     {
       PropertyChanged += UpdateFormats;
 
-      DataGridDoubleClickCommand = new ActionCommand(CopyToClipboard);
+      CommandCopySelected = new ActionCommand(CopyToClipboard);
+      CommandGithub = new ActionCommand(OpenGithub);
 
       UpdateFormats(this, new PropertyChangedEventArgs(nameof(GetType)));
+    }
+
+    private void OpenGithub()
+    {
+      Process.Start("explorer", @"https://github.com/TimeTravelPenguin/DiscordTimeStamper");
     }
 
     private void CopyToClipboard()
@@ -107,8 +102,10 @@ namespace DiscordTimeStamper
       GeneratedFormats.Add(new FormatPair(string.Format(discordFormat, "f"), formattedTime, "MMMM dd, yyyy h:mm tt"));
       GeneratedFormats.Add(new FormatPair(string.Format(discordFormat, "t"), formattedTime, "h:mm tt"));
       GeneratedFormats.Add(new FormatPair(string.Format(discordFormat, "D"), formattedTime, "MMMM dd, yyyy"));
-      GeneratedFormats.Add(new FormatPair(string.Format(discordFormat, "F"), formattedTime, "dddd, MMMM dd, yyyy h:mm tt"));
-      GeneratedFormats.Add(new FormatPair {DiscordFormat = string.Format(discordFormat, "R"), Value = "<Time remaining since/until>"});
+      GeneratedFormats.Add(new FormatPair(string.Format(discordFormat, "F"), formattedTime,
+        "dddd, MMMM dd, yyyy h:mm tt"));
+      GeneratedFormats.Add(new FormatPair
+        {DiscordFormat = string.Format(discordFormat, "R"), Value = "<Time remaining since/until>"});
       GeneratedFormats.Add(new FormatPair(string.Format(discordFormat, "T"), formattedTime, "h:mm:ss tt"));
     }
   }
