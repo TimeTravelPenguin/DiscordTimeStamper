@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordTimeStamper", "DiscordTimeStamper\DiscordTimeStamper.csproj", "{E919B260-9A5C-471A-8AF8-B3FD10D6E5EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E919B260-9A5C-471A-8AF8-B3FD10D6E5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E919B260-9A5C-471A-8AF8-B3FD10D6E5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E919B260-9A5C-471A-8AF8-B3FD10D6E5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E919B260-9A5C-471A-8AF8-B3FD10D6E5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {051D5E1E-F6D3-4E7B-8CB4-982E75762005}
+	EndGlobalSection
+EndGlobal
