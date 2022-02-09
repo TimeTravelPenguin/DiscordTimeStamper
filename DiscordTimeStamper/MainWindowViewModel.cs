@@ -7,7 +7,7 @@
 // File Name: MainWindowViewModel.cs
 // 
 // Current Data:
-// 2021-07-13 2:11 AM
+// 2022-02-09 9:55 PM
 // 
 // Creation Date:
 // 2021-07-12 10:02 PM
@@ -89,7 +89,7 @@ namespace DiscordTimeStamper
       try
       {
         formattedTime = new DateTimeOffset(DateTime.Year, DateTime.Month, DateTime.Day, DateTime.Hour,
-          DateTime.Minute, DateTime.Second, SelectedTimeZone.BaseUtcOffset);
+          DateTime.Minute, DateTime.Second, SelectedTimeZone.GetUtcOffset(DateTime));
       }
       catch (Exception err)
       {
