@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<maui:ReactiveContentPage
+    x:Class="DiscordTimeStamper.Maui.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+    xmlns:viewModels="clr-namespace:DiscordTimeStamper.Maui.ViewModels"
+    x:TypeArguments="viewModels:MainPageViewModel">
+
+    <ScrollView>
+        <Grid
+            Margin="30,20"
+            ColumnDefinitions="Auto, 1*"
+            ColumnSpacing="15"
+            RowDefinitions="Auto, Auto">
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Datetime:"
+                VerticalTextAlignment="Center" />
+
+            <DatePicker
+                x:Name="DatePicker"
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Timezone:"
+                VerticalTextAlignment="Center" />
+
+        </Grid>
+    </ScrollView>
+
+</maui:ReactiveContentPage>
