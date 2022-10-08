@@ -27,7 +27,7 @@ public partial class MainPage : ReactiveContentPage<MainPageViewModel>
 
       // TODO: Need to convert
       this.Bind(ViewModel,
-          vm => vm.SelectedTimeZone.Date,
+          vm => vm.SelectedDateTime.Date,
           v => v.DatePicker.Date)
         .DisposeWith(disposables);
     });

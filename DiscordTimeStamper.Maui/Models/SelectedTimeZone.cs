@@ -3,7 +3,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace DiscordTimeStamper.Maui.Models;
 
-public class SelectedTimeZone : ReactiveObject
+public class SelectedDateTime : ReactiveObject
 {
   [Reactive]
   public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Now).AddDays(3);

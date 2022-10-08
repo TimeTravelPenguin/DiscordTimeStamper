@@ -5,7 +5,7 @@ namespace DiscordTimeStamper.Maui.ViewModels;
 
 public class MainPageViewModel : ActivatableViewModel
 {
-  public SelectedTimeZone SelectedTimeZone { get; set; } = new();
+  public SelectedDateTime SelectedDateTime { get; set; } = new();
 
   protected override void OnActivated(CompositeDisposable disposables)
   {
